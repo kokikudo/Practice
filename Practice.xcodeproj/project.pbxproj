@@ -40,6 +40,7 @@
 		FDB1E45129FCD09C0042F6F6 /* PaginationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E45029FCD09C0042F6F6 /* PaginationViewModel.swift */; };
 		FDB1E45329FCD0CC0042F6F6 /* PaginationDummyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E45229FCD0CC0042F6F6 /* PaginationDummyService.swift */; };
 		FDB1E45529FCD1430042F6F6 /* PaginationHeaderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB1E45429FCD1430042F6F6 /* PaginationHeaderType.swift */; };
+		FDB232D529FF2AF30098BD04 /* NewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB232D429FF2AF30098BD04 /* NewModel.swift */; };
 		FDB5E08229D7DA47009ADEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB5E08129D7DA47009ADEA2 /* AppDelegate.swift */; };
 		FDB5E08429D7DA47009ADEA2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB5E08329D7DA47009ADEA2 /* SceneDelegate.swift */; };
 		FDB5E08629D7DA47009ADEA2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB5E08529D7DA47009ADEA2 /* ViewController.swift */; };
@@ -112,6 +113,7 @@
 		FDB1E45029FCD09C0042F6F6 /* PaginationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationViewModel.swift; sourceTree = "<group>"; };
 		FDB1E45229FCD0CC0042F6F6 /* PaginationDummyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationDummyService.swift; sourceTree = "<group>"; };
 		FDB1E45429FCD1430042F6F6 /* PaginationHeaderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationHeaderType.swift; sourceTree = "<group>"; };
+		FDB232D429FF2AF30098BD04 /* NewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewModel.swift; sourceTree = "<group>"; };
 		FDB5E07E29D7DA47009ADEA2 /* Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Practice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDB5E08129D7DA47009ADEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDB5E08329D7DA47009ADEA2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 				FDB1E45229FCD0CC0042F6F6 /* PaginationDummyService.swift */,
 				FDB1E45429FCD1430042F6F6 /* PaginationHeaderType.swift */,
 				FDAF686E29FDFF270032C083 /* PaginationModel.swift */,
+				FDB232D429FF2AF30098BD04 /* NewModel.swift */,
 			);
 			path = Pagination;
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				FDA92CB829D93DF500D5B722 /* ExpandableTableViewController.swift in Sources */,
 				FDA92CBE29D93F1900D5B722 /* ExpandableHeaderView.swift in Sources */,
 				FDB5E08629D7DA47009ADEA2 /* ViewController.swift in Sources */,
+				FDB232D529FF2AF30098BD04 /* NewModel.swift in Sources */,
 				FDB5E08229D7DA47009ADEA2 /* AppDelegate.swift in Sources */,
 				FDA911AE29E18AE700CE3625 /* PreviewContainerViewController.swift in Sources */,
 				FDAF686D29FDFAF70032C083 /* ModelError.swift in Sources */,
