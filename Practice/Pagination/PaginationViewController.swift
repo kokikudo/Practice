@@ -31,7 +31,7 @@ class PaginationViewController: UIViewController {
             let refreshControl = UIRefreshControl()
             return refreshControl
         }()
-    private let viewModel = PaginationViewModel()
+    private var viewModel: PaginationViewModel?
     private let disposeBag = DisposeBag()
     private let scrollEndSubject = PublishSubject<Void>()
     
@@ -44,7 +44,7 @@ class PaginationViewController: UIViewController {
     }
 
     private func bind() {
-        viewModel.items.bind(to: tableView.rx.items) { tableView, _, item in
+        viewModel?.items.bind(to: tableView.rx.items) { tableView, _, item in
             let cell = tableView
                 .dequeueReusableCell(withIdentifier: UITableViewCell.description())
             cell?.selectionStyle = .none
@@ -53,7 +53,7 @@ class PaginationViewController: UIViewController {
         }
         .disposed(by: disposeBag)
         
-        viewModel.refreshComplietedEvent.subscribe { [weak self] _ in
+        viewModel?.refreshComplietedEvent.subscribe { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
         .disposed(by: disposeBag)
@@ -70,7 +70,7 @@ class PaginationViewController: UIViewController {
         }
         .disposed(by: disposeBag)
         
-        viewModel.isLoadingEvent.subscribe { [weak self] isLoading in
+        viewModel?.isLoadingEvent.subscribe { [weak self] isLoading in
             self?.tableView.tableFooterView = isLoading ? self?.viewSpinner : UIView(frame: .zero)
         }
         .disposed(by: disposeBag)
@@ -85,10 +85,16 @@ class PaginationViewController: UIViewController {
         
         let input = PaginationViewModelInput(
             selectTab: selectTab,
-            scrollEnd: scrollEndSubject.asObservable(),
+            scrollEnd: scrollEndSubject.startWith(()),
             refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable()
         )
-        viewModel.setup(input: input)
+        
+        viewModel = PaginationViewModel(
+            selectTab: selectTab,
+            scrollEnd: scrollEndSubject.startWith(()),
+            refresh: refreshControl.rx.controlEvent(.valueChanged).asObservable(),
+            model: NewModel(selectedType: .one)
+        )
     }
     
     private func setupTableView() {

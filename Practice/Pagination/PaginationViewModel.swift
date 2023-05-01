@@ -31,6 +31,9 @@ class PaginationViewModel: PaginationViewModelType {
     private let disposeBag = DisposeBag()
     private let dummyService = PaginationDummyService()
         
+    private let displayItems: Observable<PaginationDummyServiceData>
+    //private let isLoading: Observable<Bool>
+    
     private let itemsSubject = PublishSubject<[String]>()
     private let oneItems = BehaviorRelay<[String]>(value: [])
     private let twoItems = BehaviorRelay<[String]>(value: [])
@@ -41,9 +44,27 @@ class PaginationViewModel: PaginationViewModelType {
     private var isLoadingNextPage = BehaviorRelay<Bool>(value: false)
     private let refreshComplietedSubject = PublishSubject<Void>()
     
+    init(selectTab: Observable<PaginationHeaderType>,
+         scrollEnd: Observable<()>,
+         refresh: Observable<()>,
+         model: NewModelProtocol
+    ) {
+        let fetchEvent = Observable.combineLatest(selectTab, scrollEnd)
+            .flatMap { selectTab, _ -> Observable<PaginationDummyServiceData?> in
+                return model
+                    .fetchDatas(type: selectTab)
+                    .take(1)
+            }
+            .share()
+    
+        displayItems = fetchEvent
+            .flatMap { optionalData -> Observable<PaginationDummyServiceData> in
+                let safeData = optionalData ?? PaginationDummyServiceData(maxPage: 0, hasMore: true, datas: [])
+                return .just(safeData)
+            }
+    }
+    
     func setup(input: PaginationViewModelInput) {
-        
-        
         input.refresh
             .withLatestFrom(input.selectTab)
             .bind(onNext: actionRefresh)
@@ -186,6 +207,8 @@ extension PaginationViewModel: PaginationViewModelOutput {
     }
     
     var items: RxSwift.Observable<[String]> {
-        return itemsSubject
+        return displayItems.map { data in
+            return data.datas!
+        }
     }
 }

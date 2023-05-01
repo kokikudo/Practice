@@ -18,6 +18,7 @@ protocol NewModelProtocol {
     var allItemsModel: ItemsModel { get set }
     var ownedItemsModel: ItemsModel { get set }
     var watchItemsModel: ItemsModel { get set }
+    func fetchDatas(type: PaginationHeaderType) -> Observable<PaginationDummyServiceData?>
 }
 
 final class NewModel: NewModelProtocol {
@@ -36,7 +37,9 @@ final class NewModel: NewModelProtocol {
         self.selectedType = selectedType
     }
     
-    func fetchDatas() -> Observable<PaginationDummyServiceData?> {
+    func fetchDatas(type: PaginationHeaderType) -> Observable<PaginationDummyServiceData?> {
+        selectedType = type
+        
         
         var data: PaginationDummyServiceData?
         
